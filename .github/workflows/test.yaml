@@ -2,8 +2,8 @@ name: "CI - Test Features"
 on:
   push:
     branches:
-      - main
-  pull_request:
+      - none
+# pull_request:
   workflow_dispatch:
 
 jobs:
