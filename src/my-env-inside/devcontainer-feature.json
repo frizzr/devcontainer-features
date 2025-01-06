@@ -1,0 +1,51 @@
+{
+    "name": "Enable in-container and CLI-based code development with neovim and a default environment or your own environment.",
+    "id": "my-env-inside",
+    "version": "1.0.0",
+    "description": "This feature adds neovim to the devcontainer and optionally your own environment either via chezmoi and dotfiles at build time OR via copying or linking stuff from your local home directory at runtime.",
+    "mounts": [
+        {
+            "type": "bind", "source": "${localEnv:HOME}", "target": "/usr/local/share/user.home"
+        }
+    ],
+    "options": {
+        "dotfileRepo": {
+            "type": "string",
+            "default": "https://github.com/frizzr/dotfiles.git",
+            "description": "Provide a dotfiles-like Git repository that will be cloned at build time via chezmoi. The default can be used by anyone."
+        },
+        "whichNeovim": {
+            "type": "string",
+            "default": "nvim",
+            "description": "Specific to the default dotfiles, you can choose between a generic astronvim distro (anvim) or the author's own setup (rnvim)."
+        },
+        "linkUserConfigDirs": {
+            "type": "string",
+            "default": "",
+            "description": "Space-delimited list of directories relative to home directory to link to container home directory one time upon container creation."
+        },
+        "copyUserConfigDirs": {
+            "type": "string",
+            "default": "",
+            "description": "Space-delimited list of directories relative to home directory to copy (with rsync) to container home directory each time you attach."
+        }
+    },
+    "containerEnv": {
+        "PATH": "$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin",
+        "EDITOR": "nvim",
+        "XDG_CONFIG_HOME": "/root/.config"
+    },
+    "postCreateCommand": "/usr/local/share/link-to-home.sh",
+    "postAttachCommand": "/usr/local/share/sync-to-home.sh ; /usr/local/share/refresh-env.sh",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/python:1": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/jungaretti/features/ripgrep:1": {},
+        "ghcr.io/devcontainers-extra/features/curl-apt-get:1": {},
+		"ghcr.io/devcontainers/features/git:1": {}
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
+
