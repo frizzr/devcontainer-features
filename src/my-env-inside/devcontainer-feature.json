@@ -1,7 +1,7 @@
 {
     "name": "Enable in-container and CLI-based code development with neovim and a default environment or your own environment.",
     "id": "my-env-inside",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "This feature adds neovim to the devcontainer and optionally your own environment either via chezmoi and dotfiles at build time OR via copying or linking stuff from your local home directory at runtime.",
     "mounts": [
         {
@@ -41,10 +41,8 @@
         "ghcr.io/devcontainers/features/node:1": {},
         "ghcr.io/jungaretti/features/ripgrep:1": {},
         "ghcr.io/devcontainers-extra/features/curl-apt-get:1": {},
-		"ghcr.io/devcontainers/features/git:1": {}
-    },
-    "installsAfter": [
-        "ghcr.io/devcontainers/features/common-utils"
-    ]
+		"ghcr.io/devcontainers/features/git:1": { "version": "latest" },
+        "ghcr.io/devcontainers/features/common-utils:2": {}
+    }
 }
 

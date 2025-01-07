@@ -1,6 +1,4 @@
-#!/bin/bash
-
-apt-get install zsh
+#!/bin/zsh
 
 OURHOME="/root"
 cd $OURHOME
