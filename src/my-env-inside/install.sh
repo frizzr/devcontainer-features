@@ -5,6 +5,12 @@ cd $OURHOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
 SYNC_TO_USER_HOME="/usr/local/share/sync-to-home.sh"
 
+tee "$OURHOME/.zshenv" > /dev/null \
+<< EOF
+export XDG_CONFIG_HOME=\${XDG_CONFIG_HOME:=\${HOME}/.config}
+export ZDOTDIR=\${ZDOTDIR:=\${XDG_CONFIG_HOME}/zsh}
+EOF
+
 touch $CREATE_LINKS_TO_USER_HOME
 touch $SYNC_TO_USER_HOME
 chmod 755 $CREATE_LINKS_TO_USER_HOME
