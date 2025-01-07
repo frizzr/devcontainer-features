@@ -1,8 +1,4 @@
-#!/bin/bash
-
-set -x
-
-echo "Inside install.sh"
+#!/bin/zsh
 
 OURHOME="/root"
 cd $OURHOME
@@ -28,11 +24,6 @@ fi
 
 # Git will be suspicious, so reassure it.
 git config --global --add safe.directory ${containerWorkspaceFolder}
-
-# Install Rust terminal IDE components
-rustup component add rust-analyzer
-cargo install lsd
-#cargo install --locked tree-sitter-cli bottom
 
 # Install neovim and run it to download needed neovim plugins at build time
 curl -L -o /tmp/nvim-linux64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
