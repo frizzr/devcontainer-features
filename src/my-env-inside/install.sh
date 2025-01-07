@@ -1,4 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
+
+set -x
+
+echo "Inside install.sh"
 
 OURHOME="/root"
 cd $OURHOME
