@@ -4,14 +4,11 @@ OURHOME="/root"
 cd $OURHOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
 SYNC_TO_USER_HOME="/usr/local/share/sync-to-home.sh"
-REFRESH_ENV="/usr/local/share/refresh-env.sh"
 
 touch $CREATE_LINKS_TO_USER_HOME
 touch $SYNC_TO_USER_HOME
-touch $REFRESH_ENV
 chmod 755 $CREATE_LINKS_TO_USER_HOME
 chmod 755 $SYNC_TO_USER_HOME
-chmod 755 $REFRESH_ENV
 
 mkdir -p ./.config
 
@@ -38,13 +35,6 @@ curl -L -o /tmp/nvim-linux64.tar.gz https://github.com/neovim/neovim/releases/la
 rm -rf /opt/nvim
 tar -C /opt -xzf /tmp/nvim-linux64.tar.gz
 export PATH="$PATH:/opt/nvim-linux64/bin"
-
-tee "$REFRESH_ENV" > /dev/null \
-<< EOF
-source $HOME/.config/.zshrc
-export NVIM_APPNAME=$WHICHNEOVIM
-EOF
-chmod 755 $REFRESH_ENV
 
 # Setup both neovim distros.
 NVIM_APPNAME=anvim nvim --headless +q
