@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt-get install zsh
+
 OURHOME="/root"
 cd $OURHOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
@@ -14,6 +16,7 @@ mkdir -p ./.config
 
 export PATH="$PATH:$OURHOME/bin:$OURHOME/.local/bin"
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
 
 # The default dotfiles repository assumes you will use /bin/zsh as your shell. It's opinionated.
 if [ -n "$DOTFILEREPO" ]; then
