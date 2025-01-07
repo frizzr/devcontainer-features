@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+set -x
+
 OURHOME="/root"
 cd $OURHOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
