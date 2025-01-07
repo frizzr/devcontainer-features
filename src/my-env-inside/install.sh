@@ -15,6 +15,12 @@ mkdir -p ./.config
 export PATH="$PATH:$OURHOME/bin:$OURHOME/.local/bin"
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
+curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
+apt install /tmp/lsd-musl_1.1.5_amd64.deb
+curl -LO --output-dir /tmp https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
+apt install /tmp/bat-musl_0.24.0_amd64.deb
+curl -LO --output-dir /tmp https://github.com/junegunn/fzf/releases/download/v0.57.0/fzf-0.57.0-linux_amd64.tar.gz
+tar -C /usr/local/bin -xzf /tmp/fzf-0.57.0-linux_amd64.tar.gz
 
 # The default dotfiles repository assumes you will use /bin/zsh as your shell. It's opinionated.
 if [ -n "$DOTFILEREPO" ]; then
