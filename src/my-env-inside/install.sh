@@ -29,7 +29,6 @@ chmod 755 $SYNC_TO_USER_HOME
 apt-get update
 apt-get -y install keychain
 export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
-sudo -u $_CONTAINER_USER /bin/zsh -c 'curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh'
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 apt install /tmp/lsd-musl_1.1.5_amd64.deb
 curl -LO --output-dir /tmp https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
@@ -53,6 +52,7 @@ chown -R ${_CONTAINER_USER}:${CONTAINER_USER_GROUP} "$_CONTAINER_USER_HOME"
 ###### START SECTION RUNNING AS SUPPLIED (NON-ROOT/ROOT) USER
 sudo -u $_CONTAINER_USER /bin/zsh <<EOF
 mkdir -p \$HOME/.config
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 # install krew for easy install of kubectl-related tools
 (
 set -x; cd "\$(mktemp -d)" &&
@@ -75,6 +75,9 @@ if [ -n "\$DOTFILE" ]; then
     sh -c "\$(curl -fsLS get.chezmoi.io/lb)" -- init --apply "\$DOTFILE"
 fi
 
+ln -s \$HOME/.oh-my-zsh/custom/themes \$HOME/.config/zsh/custom/themes
+ln -s \$HOME/.oh-my-zsh/custom/plugins \$HOME/.config/zsh/custom/plugins
+
 if [[ -e \$HOME/.zshrc ]]; then
 mv \$HOME/.zshrc \$HOME/microsoft.zshrc
 fi
@@ -84,8 +87,7 @@ fi
 
 source \$HOME/.config/zsh/.zshrc
 git config --global --add safe.directory ${containerWorkspaceFolder}
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \$HOME/.oh-my-zsh/custom/themes/powerlevel10k
-
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "\${ZSH_CUSTOM:-\$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 # Move in our prompt config from /tmp
 rm -f \$HOME/.config/zsh/.p10k.zsh
 mv /tmp/$P10K_SETUP_FILE \$HOME/.config/zsh/.p10k.zsh
