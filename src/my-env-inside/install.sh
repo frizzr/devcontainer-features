@@ -98,6 +98,8 @@ mv /tmp/$P10K_SETUP_FILE \$HOME/.config/zsh/.p10k.zsh
 export PATH="\$PATH:/opt/nvim-linux64/bin"
 NVIM_APPNAME=anvim nvim --headless +q   # stock AstroNvim
 NVIM_APPNAME=rnvim nvim --headless +q   # The author's own nvim setup
+cd \$HOME/.local/share/rnvim/lazy/coq_nvim
+python3 -m coq deps
 EOF
 
 # Setup the script for linking directories from local home directory at runtime
