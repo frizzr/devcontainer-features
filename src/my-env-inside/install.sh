@@ -26,7 +26,8 @@ touch $SYNC_TO_USER_HOME
 chmod 755 $CREATE_LINKS_TO_USER_HOME
 chmod 755 $SYNC_TO_USER_HOME
 
-apt update
+apt-get update
+apt-get -y install keychain
 export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
 sudo -u $_CONTAINER_USER /bin/zsh -c 'curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh'
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
@@ -81,13 +82,13 @@ if [[ -e \$HOME/.zprofile ]]; then
 mv \$HOME/.zprofile \$HOME/microsoft.zprofile
 fi
 
-source \$HOME/zsh/.zshrc
+source \$HOME/.config/zsh/.zshrc
 git config --global --add safe.directory ${containerWorkspaceFolder}
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \$HOME/.oh-my-zsh/custom/themes/powerlevel10k
 
 # Move in our prompt config from /tmp
-rm -f $\HOME/.config/zsh/.p10k.zsh
-mv /tmp/$P10K_SETUP_FILE $\HOME/.config/zsh/.p10k.zsh
+rm -f \$HOME/.config/zsh/.p10k.zsh
+mv /tmp/$P10K_SETUP_FILE \$HOME/.config/zsh/.p10k.zsh
 
 # Setup both neovim distros.
 export PATH="\$PATH:/opt/nvim-linux64/bin"
