@@ -1,7 +1,7 @@
 {
     "name": "Enable in-container and CLI-based code development with neovim and a default environment or your own environment.",
     "id": "my-env-inside",
-    "version": "1.0.16",
+    "version": "1.0.17",
     "description": "This feature adds neovim to the devcontainer and optionally your own environment either via chezmoi and dotfiles at build time OR via copying or linking stuff from your local home directory at runtime.",
     "mounts": [
         {
@@ -31,9 +31,9 @@
         }
     },
     "containerEnv": {
-        "PATH": "$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin",
+        "PATH": "$PATH:/opt/nvim-linux64/bin:/home/vscode/.local/bin",
         "EDITOR": "nvim",
-        "XDG_CONFIG_HOME": "$HOME/.config"
+        "XDG_CONFIG_HOME": "/home/vscode/.config"
     },
     "postCreateCommand": "/usr/local/share/link-to-home.sh",
     "postAttachCommand": "/usr/local/share/sync-to-home.sh",

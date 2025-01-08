@@ -1,12 +1,8 @@
 #!/bin/zsh
 
-set -x
+# set -x
 
-echo iiiiiiiiiii Container user is $_CONTAINER_USER iiiiiiiiiiiiiiiiii
-echo iiiiiiiiiii Container user home is $_CONTAINER_USER_HOME iiiiiiiiiiiiiiiiii
-echo iiiiiiiiiii Remote user is $_REMOTE_USER iiiiiiiiiiiiiiiiii
-echo iiiiiiiiiii Remote user home is $_REMOTE_USER_HOME iiiiiiiiiiiiiiiiii
-
+export _CONTAINER_USER_HOME=/home/$_CONTAINER_USER
 CONTAINER_USER_GROUP=$(id -gn $_CONTAINER_USER)
 cd $_CONTAINER_USER_HOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
@@ -25,8 +21,8 @@ chmod 755 $CREATE_LINKS_TO_USER_HOME
 chmod 755 $SYNC_TO_USER_HOME
 
 apt update
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
+sudo -u $_CONTAINER_USER /bin/zsh -c 'curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh'
 
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 apt install /tmp/lsd-musl_1.1.5_amd64.deb
@@ -41,6 +37,7 @@ rm -rf /opt/nvim
 tar -C /opt -xzf /tmp/nvim-linux64.tar.gz
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
+chown -R ${_CONTAINER_USER}:${CONTAINER_USER_GROUP} "$_CONTAINER_USER_HOME"
 ###### START SECTION RUNNING AS SUPPLIED (NON-ROOT/ROOT) USER
 sudo -u $_CONTAINER_USER /bin/zsh <<EOF
 mkdir -p \$HOME/.config
