@@ -1,7 +1,7 @@
 {
     "name": "Enable in-container and CLI-based code development with neovim and a default environment or your own environment.",
     "id": "my-env-inside",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "This feature adds neovim to the devcontainer and optionally your own environment either via chezmoi and dotfiles at build time OR via copying or linking stuff from your local home directory at runtime.",
     "mounts": [
         {
@@ -11,13 +11,18 @@
     "options": {
         "dotfileRepo": {
             "type": "string",
-            "default": "https://github.com/frizzr/dotfiles.git",
+            "default": "https://github.com/frizzr/dotfiles-for-features.git",
             "description": "Provide a dotfiles-like Git repository that will be cloned at build time via chezmoi. The default can be used by anyone."
         },
         "whichNeovim": {
             "type": "string",
             "default": "rnvim",
             "description": "Specific to the default dotfiles, you can choose between a generic astronvim distro (anvim) or the author's own setup (rnvim)."
+        },
+        "kubectlVersion": {
+            "type": "string",
+            "default": "v1.32.0",
+            "description": "Which version of kubectl to install."
         },
         "linkUserConfigDirs": {
             "type": "string",
