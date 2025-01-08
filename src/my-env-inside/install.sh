@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+set -x
+
+echo iiiiiiiiiii Container user is $_CONTAINER_USER iiiiiiiiiiiiiiiiii
+echo iiiiiiiiiii Container user home is $_CONTAINER_USER_HOME iiiiiiiiiiiiiiiiii
+echo iiiiiiiiiii Remote user is $_REMOTE_USER iiiiiiiiiiiiiiiiii
+echo iiiiiiiiiii Remote user home is $_REMOTE_USER_HOME iiiiiiiiiiiiiiiiii
+
 CONTAINER_USER_GROUP=$(id -gn $_CONTAINER_USER)
 cd $_CONTAINER_USER_HOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
