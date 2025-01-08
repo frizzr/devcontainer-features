@@ -26,8 +26,23 @@ touch $SYNC_TO_USER_HOME
 chmod 755 $CREATE_LINKS_TO_USER_HOME
 chmod 755 $SYNC_TO_USER_HOME
 
+cd /tmp
 apt-get update
-apt-get -y install keychain
+apt-get -y install keychain build-essential libreadline-dev unzip
+curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+tar -zxf lua-5.3.5.tar.gz
+cd lua-5.3.5
+make linux test
+make install
+cd /tmp
+curl -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
+tar -zxf luarocks-3.11.1.tar.gz
+cd luarocks-3.11.1
+./configure --with-lua-include=/usr/local/include
+make
+make install
+
+cd $_CONTAINER_USER_HOME
 export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 apt install /tmp/lsd-musl_1.1.5_amd64.deb
