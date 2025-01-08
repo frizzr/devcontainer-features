@@ -68,6 +68,8 @@ export PATH="\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH"
 kubectl krew update
 kubectl krew install kc     # installs kubecm
 
+pip install python-lsp-server
+
 DOTFILE="$DOTFILEREPO"
 if [ -n "\$DOTFILE" ]; then
     # Install chezmoi and get dotfiles. The default dotfiles is https://github.com/frizzr/dotfiles.git, which can
