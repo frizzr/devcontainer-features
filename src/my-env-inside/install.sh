@@ -1,11 +1,10 @@
 #!/bin/zsh
 
-OURHOME="/root"
-cd $OURHOME
+cd $HOME
 CREATE_LINKS_TO_USER_HOME="/usr/local/share/link-to-home.sh"
 SYNC_TO_USER_HOME="/usr/local/share/sync-to-home.sh"
 
-tee "$OURHOME/.zshenv" > /dev/null \
+tee "$HOME/.zshenv" > /dev/null \
 << EOF
 export XDG_CONFIG_HOME=\${XDG_CONFIG_HOME:=\${HOME}/.config}
 export ZDOTDIR=\${ZDOTDIR:=\${XDG_CONFIG_HOME}/zsh}
@@ -18,7 +17,7 @@ chmod 755 $SYNC_TO_USER_HOME
 
 mkdir -p ./.config
 
-export PATH="$PATH:$OURHOME/bin:$OURHOME/.local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
