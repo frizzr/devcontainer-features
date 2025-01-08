@@ -29,13 +29,13 @@ chmod 755 $SYNC_TO_USER_HOME
 cd /tmp
 apt-get update
 apt-get -y install keychain build-essential libreadline-dev unzip
-curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+curl -L -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
 tar -zxf lua-5.3.5.tar.gz
 cd lua-5.3.5
 make linux test
 make install
 cd /tmp
-curl -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
+curl -L -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
 tar -zxf luarocks-3.11.1.tar.gz
 cd luarocks-3.11.1
 ./configure --with-lua-include=/usr/local/include
