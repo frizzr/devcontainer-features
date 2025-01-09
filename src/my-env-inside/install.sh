@@ -28,7 +28,7 @@ chmod 755 $SYNC_TO_USER_HOME
 
 cd /tmp
 apt-get update
-apt-get -y install keychain build-essential libreadline-dev unzip
+apt-get -y install keychain build-essential libreadline-dev unzip pass
 curl -L -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
 tar -zxf lua-5.3.5.tar.gz
 cd lua-5.3.5
