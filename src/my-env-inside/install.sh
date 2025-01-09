@@ -51,6 +51,8 @@ cd $_CONTAINER_USER_HOME
 export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
 curl -LO --output-dir /tmp https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 apt install /tmp/lsd-musl_1.1.5_amd64.deb
+curl -LO --output-dir /tmp https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.0/gcm-linux_amd64.2.6.0.deb
+apt install /tmp/gcm-linux_amd64.2.6.0.deb
 curl -LO --output-dir /tmp https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
 apt install /tmp/bat-musl_0.24.0_amd64.deb
 curl -LO --output-dir /tmp https://github.com/junegunn/fzf/releases/download/v0.57.0/fzf-0.57.0-linux_amd64.tar.gz
@@ -109,6 +111,10 @@ fi
 
 source \$HOME/.config/zsh/.zshrc
 git config --global --add safe.directory ${containerWorkspaceFolder}
+
+# TODO: make this an option in the feature
+git config --global credential.credentialStore gpg
+
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "\${ZSH_CUSTOM:-\$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 # Move in our prompt config from /tmp
 rm -f \$HOME/.config/zsh/.p10k.zsh
