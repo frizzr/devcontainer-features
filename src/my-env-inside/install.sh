@@ -41,6 +41,11 @@ cd luarocks-3.11.1
 ./configure --with-lua-include=/usr/local/include
 make
 make install
+cd /tmp
+export ISTIO_VERSION="1.14.1"
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=${ISTIO_VERSION} sh -
+cd istio-${ISTIO_VERSION}
+cp -v bin/istioctl /usr/local/bin/
 
 cd $_CONTAINER_USER_HOME
 export PATH="$PATH:$_CONTAINER_USER_HOME/bin:$_CONTAINER_USER_HOME/.local/bin"
