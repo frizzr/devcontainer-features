@@ -42,7 +42,7 @@ cd luarocks-3.11.1
 make
 make install
 cd /tmp
-export ISTIO_VERSION="1.14.1"
+export ISTIO_VERSION="1.24.2"
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=${ISTIO_VERSION} sh -
 cd istio-${ISTIO_VERSION}
 cp -v bin/istioctl /usr/local/bin/
